@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   create_map.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cortiz <cortiz@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/03 08:06:19 by cortiz            #+#    #+#             */
+/*   Updated: 2023/03/03 13:27:34 by cortiz           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 int	count_width(const char *str)
@@ -19,79 +31,79 @@ int	count_width(const char *str)
 	return (total_word);
 }
 
-int get_height(char *file)
+int	get_height(char *file)
 {
-    int     fd;
-    int     i;
-    char    *line;
+	int		fd;
+	int		i;
+	char	*line;
 
-    fd = open(file, O_RDONLY);
-    line = get_next_line(fd);
-    i = 0;
-    while (line)
-    {
-        free(line);
-        line = get_next_line(fd);
-        i++;
-    }
-    free(line);
-    close (fd);
-    return (i);
+	fd = open(file, O_RDONLY);
+	line = get_next_line(fd);
+	i = 0;
+	while (line)
+	{
+		free(line);
+		line = get_next_line(fd);
+		i++;
+	}
+	free(line);
+	close(fd);
+	return (i);
 }
 
-int get_width(char *file)
+int	get_width(char *file)
 {
-    int     fd;
-    int     width;
-    char    *line;
+	int		fd;
+	int		width;
+	char	*line;
 
-    fd = open(file, O_RDONLY, 0);
-    line = get_next_line(fd);
-    width = count_width(line);
-    free(line);
-    close(fd);
-    return (width);
+	fd = open(file, O_RDONLY, 0);
+	line = get_next_line(fd);
+	width = count_width(line);
+	free(line);
+	close(fd);
+	return (width);
 }
 
-void    fill_map(int *map_line, char *line)
+void	fill_map(int *map_line, char *line)
 {
-    char    **tmp;
-    int     i;
+	char	**tmp;
+	int		i;
 
-    i = 0;
-    tmp = ft_split(line, ' ');
-    while (tmp[i])
-    {
-        map_line[i] = ft_atoi(tmp[i]);
-        free(tmp[i]);
-        i++;
-    }
-    free(tmp);
+	i = 0;
+	tmp = ft_split(line, ' ');
+	while (tmp[i])
+	{
+		map_line[i] = ft_atoi(tmp[i]);
+		free(tmp[i]);
+		i++;
+	}
+	free(tmp);
 }
 
-void    create_map(t_map *map, char *file)
+void	create_map(t_map *map, char *file)
 {
-    int     i;
-    int     fd;
-    char    *line;
+	int		i;
+	int		fd;
+	char	*line;
 
-    map->height = get_height(file);
-    map->width = get_width(file); 
-    map->matrix = malloc(sizeof(int *) * (map->height + 1));
-    i = -1;
-    while (++i <= map->height)
-        map->matrix[i] = malloc(sizeof(int) * (map->width + 1));
-    fd = open(file, O_RDONLY, 0);
-    i = 0;
-    line = get_next_line(fd);
-    while (line)
-    {
-        fill_map(map->matrix[i], line);
-        free(line);
-        line = get_next_line(fd);
-        i++;
-    }
-    map->matrix[i] = NULL;
-    free(line);
-    close(fd);
+	map->height = get_height(file);
+	map->width = get_width(file);
+	map->matrix = malloc(sizeof(int *) * (map->height + 1));
+	i = -1;
+	while (++i <= map->height)
+		map->matrix[i] = malloc(sizeof(int) * (map->width + 1));
+	fd = open(file, O_RDONLY, 0);
+	i = 0;
+	line = get_next_line(fd);
+	while (line)
+	{
+		fill_map(map->matrix[i], line);
+		free(line);
+		line = get_next_line(fd);
+		i++;
+	}
+	map->matrix[i] = NULL;
+	free(line);
+	close(fd);
 }

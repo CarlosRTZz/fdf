@@ -6,10 +6,11 @@
 /*   By: cortiz <cortiz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 19:06:27 by carlos            #+#    #+#             */
-/*   Updated: 2022/10/18 17:00:31 by cortiz           ###   ########.fr       */
+/*   Updated: 2023/03/03 12:11:09 by cortiz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include <stdlib.h>
 
 char	**ft_free(char **tab, int i)

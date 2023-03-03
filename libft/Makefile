@@ -6,7 +6,7 @@
 #    By: cortiz <cortiz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/03 12:41:54 by cortiz            #+#    #+#              #
-#    Updated: 2022/10/18 18:29:38 by cortiz           ###   ########.fr        #
+#    Updated: 2023/03/03 12:11:58 by cortiz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ SRCS	= ft_atoi.c	\
 	ft_putstr_fd.c	\
 	ft_putendl_fd.c	\
 	ft_putnbr_fd.c	\
+	print_errors.c	\
 
 SRCSB = ft_lstclear_bonus.c\
 	ft_lstadd_back_bonus.c\

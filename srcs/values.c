@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   values.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cortiz <cortiz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: carlosortiz <carlosortiz@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 08:06:51 by cortiz            #+#    #+#             */
-/*   Updated: 2023/03/03 08:48:16 by cortiz           ###   ########.fr       */
+/*   Updated: 2023/03/04 09:35:28 by carlosortiz      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,8 @@ void	modifyvalue(int keycode, t_map *mlx)
 		mlx->cos_angle -= 2;
 		mlx->sin_angle -= 2;
 	}
-	if (keycode == FOUR)
-		mlx->sin_angle -= 2;
-	if (keycode == SIX)
-		mlx->sin_angle += 2;
+	if (keycode == G)
+		mlx->iso *= -1;
 	if (keycode == PLUS)
 		mlx->z_zoom += 2;
 	if (keycode == MINUS)

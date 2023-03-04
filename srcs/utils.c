@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cortiz <cortiz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: carlosortiz <carlosortiz@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 08:06:59 by cortiz            #+#    #+#             */
-/*   Updated: 2023/03/03 10:01:37 by cortiz           ###   ########.fr       */
+/*   Updated: 2023/03/04 10:36:12 by carlosortiz      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,10 @@ float	absolute(float a)
 	return (a);
 }
 
-int	maxi(int a, int b)
+int	deletewindow(t_map *mlx)
 {
-	if (a > b)
-		return (a);
-	return (b);
+	mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
+	exit(0);
 }
 
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color)

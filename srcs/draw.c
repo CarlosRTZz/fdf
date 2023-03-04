@@ -3,14 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cortiz <cortiz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: carlosortiz <carlosortiz@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 08:06:26 by cortiz            #+#    #+#             */
-/*   Updated: 2023/03/03 08:47:19 by cortiz           ###   ########.fr       */
+/*   Updated: 2023/03/04 10:51:00 by carlosortiz      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+int	maxi(int a, int b)
+{
+	if (a > b)
+		return (a);
+	return (b);
+}
 
 static void	iso(t_point *p, int z, t_map *mlx)
 {
@@ -28,14 +35,19 @@ void	setall(t_map *mlx)
 	int	z1;
 	int	z2;
 
+	if (mlx->iso < -1 || !mlx->iso)
+		mlx->iso = 1;
 	z1 = mlx->matrix[(int)mlx->a.y][(int)mlx->a.x];
 	z2 = mlx->matrix[(int)mlx->b.y][(int)mlx->b.x];
 	zoom(&mlx->a, &mlx->b, mlx);
 	z1 *= mlx->z_zoom;
 	z2 *= mlx->z_zoom;
 	set_color(z1, z2, mlx);
-	iso(&mlx->a, z1, mlx);
-	iso(&mlx->b, z2, mlx);
+	if (mlx->iso == 1)
+	{
+		iso(&mlx->a, z1, mlx);
+		iso(&mlx->b, z2, mlx);
+	}
 	shifting(&mlx->a, &mlx->b, mlx);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cortiz <cortiz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: carlosortiz <carlosortiz@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 08:06:19 by cortiz            #+#    #+#             */
-/*   Updated: 2023/03/03 13:27:34 by cortiz           ###   ########.fr       */
+/*   Updated: 2023/03/03 20:11:05 by carlosortiz      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,10 +98,9 @@ void	create_map(t_map *map, char *file)
 	line = get_next_line(fd);
 	while (line)
 	{
-		fill_map(map->matrix[i], line);
+		fill_map(map->matrix[i++], line);
 		free(line);
 		line = get_next_line(fd);
-		i++;
 	}
 	map->matrix[i] = NULL;
 	free(line);

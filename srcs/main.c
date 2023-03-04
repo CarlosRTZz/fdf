@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cortiz <cortiz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: carlosortiz <carlosortiz@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 08:06:42 by cortiz            #+#    #+#             */
-/*   Updated: 2023/03/03 10:48:51 by cortiz           ###   ########.fr       */
+/*   Updated: 2023/03/04 11:03:23 by carlosortiz      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	check_map(char *file)
 
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		print_errors("Wrong file fait un effort stp");
+		print_errors("Wrong file !");
+	close(fd);
 }
 
 void	setvalue(t_map *mlx)
@@ -54,7 +55,6 @@ int	onkeypress(int keycode, t_map *mlx)
 	if (keycode == ESC)
 	{
 		mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
-		system("leaks a.out");
 		free_matrix(mlx);
 		exit(0);
 	}
@@ -70,7 +70,7 @@ int	main(int ac, char **av)
 	t_map	*mlx;
 
 	if (ac != 2)
-		print_errors("Map missing");
+		print_errors("File missing !");
 	check_map(av[1]);
 	mlx = malloc(sizeof(t_map));
 	if (!mlx)
@@ -85,5 +85,6 @@ int	main(int ac, char **av)
 	draw_map(mlx);
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->img.img, 0, 0);
 	mlx_hook(mlx->win_ptr, 2, 1L << 1, onkeypress, mlx);
+	mlx_hook(mlx->win_ptr, 17, 1L << 5, deletewindow, mlx);
 	mlx_loop(mlx->mlx_ptr);
 }
